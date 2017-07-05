@@ -1,0 +1,101 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.smartbeings.assignment.SearchFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#13a6ff"
+            android:orientation="vertical">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/style_listmap_lyt"
+                    android:layout_centerHorizontal="true">
+
+                    <TextView
+                        android:id="@+id/list_txtvw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:text="List"
+                        android:background="@drawable/style_list_unselect"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"/>
+
+                    <TextView
+                        android:id="@+id/map_txtvw"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="#fff"
+                        android:text="Map"
+                        android:paddingTop="10dp"
+                        android:paddingBottom="10dp"
+                        android:paddingStart="20dp"
+                        android:paddingEnd="20dp"/>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
+            <co.ceryle.radiorealbutton.RadioRealButtonGroup
+                android:id="@+id/typeGroup"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:rrbg_animateDrawables_enter="linearOutSlowIn"
+                app:rrbg_animateTexts_enter="accelerateDecelerate"
+                app:rrbg_dividerColor="#000"
+                app:rrbg_dividerSize="1dp"
+                app:rrbg_backgroundColor="#0a70dc"
+                app:rrbg_selectorColor="#ff5050"
+                app:rrbg_selectorSize="6dp">
+
+                <co.ceryle.radiorealbutton.RadioRealButton
+                    android:id="@+id/radio_meeting"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrb_drawableHeight="36dp"
+                    app:rrb_drawablePadding="8dp"
+                    app:rrb_drawableWidth="36dp"
+                    app:rrb_ripple="true"
+                    app:rrb_rippleColor="#46ffd4"
+                    app:rrb_text="Meetings"
+                    app:rrb_textColor="#fff"/>
+
+                <co.ceryle.radiorealbutton.RadioRealButton
+                    android:id="@+id/radio_workspace"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:rrb_drawableGravity="right"
+                    app:rrb_drawableHeight="36dp"
+                    app:rrb_drawablePadding="8dp"
+                    app:rrb_drawableWidth="36dp"
+                    app:rrb_ripple="true"
+                    app:rrb_rippleColor="#46ffd4"
+                    app:rrb_text="Workspace"
+                    app:rrb_textColor="#fff"/>
+
+            </co.ceryle.radiorealbutton.RadioRealButtonGroup>
+
+        </LinearLayout>
+
+        <com.google.android.gms.maps.MapView
+            android:id="@+id/map"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+</LinearLayout>

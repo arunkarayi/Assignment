@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/search"
+        android:enabled="true"
+        android:icon="@drawable/output38"
+        android:title="SEARCH"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/messages"
+        android:enabled="true"
+        android:icon="@drawable/output39"
+        android:title="messages"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/bookings"
+        android:enabled="true"
+        android:icon="@drawable/output40"
+        android:title="bookings"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/you"
+        android:enabled="true"
+        android:icon="@drawable/output41"
+        android:title="user"
+        app:showAsAction="ifRoom" />
+</menu>
