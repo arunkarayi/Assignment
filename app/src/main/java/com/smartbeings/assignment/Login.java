@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -35,6 +36,7 @@ public class Login extends AppCompatActivity {
     Button signin_btn;
     String username=null,password=null;
     private Login_auth_data login_result;
+    ProgressBar pb;
 
     private static final int CODE_ERROR = 1;
     private static final int CODE_OK = 0;
@@ -47,6 +49,8 @@ public class Login extends AppCompatActivity {
         usernameetxt = (EditText) findViewById(R.id.username_etxt);
         passwordetxt = (EditText) findViewById(R.id.password_etxt);
         signin_btn = (Button) findViewById(R.id.signin_btn);
+        pb = (ProgressBar) findViewById(R.id.progbar);
+        pb.setVisibility(View.INVISIBLE);
 
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,8 @@ public class Login extends AppCompatActivity {
                 password = passwordetxt.getText().toString();
                 if (checkConnectivity())
                 {
+                    pb.setVisibility(View.VISIBLE);
+                    signin_btn.setEnabled(false);
                     System.out.println("pressed");
                     callService();
                 }
@@ -128,6 +134,9 @@ public class Login extends AppCompatActivity {
 
     final Handler handler = new Handler() {
         public void handleMessage(Message msg) {
+
+            signin_btn.setEnabled(true);
+            pb.setVisibility(View.INVISIBLE);
 //            dialog.dismiss();
             if (msg.what == CODE_ERROR) {
                 Toast.makeText(Login.this, "Service error.", Toast.LENGTH_SHORT).show();

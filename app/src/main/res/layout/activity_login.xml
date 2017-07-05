@@ -12,8 +12,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:paddingStart="40dp"
-        android:paddingEnd="40dp"
         android:gravity="center_horizontal">
 
         <TextView
@@ -23,11 +21,11 @@
             android:text="Login"
             android:textColor="#fff"
             android:textSize="17sp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="20dp"/>
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="135dp"
+            android:layout_height="120dp"
             android:background="@drawable/logo"
             android:layout_marginTop="20dp"/>
 
@@ -42,16 +40,26 @@
                 android:layout_height="wrap_content"
                 android:text="leg"
                 android:textStyle="bold"
-                android:textSize="20sp"
+                android:textSize="32sp"
                 android:textColor="#fff"/>
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="rooms"
-                android:textSize="20sp"
+                android:textSize="32sp"
                 android:textColor="#fff" />
 
         </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_centerInParent="true">
 
         <EditText
             android:id="@+id/username_etxt"
@@ -90,11 +98,31 @@
             android:background="@drawable/style_button_login"
             android:textColor="#fff"/>
 
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="40dp"
+        android:orientation="vertical">
+
+
+        <ProgressBar
+            android:id="@+id/progbar"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:paddingTop="10dp"/>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password ?"
-            android:layout_marginTop="30dp"
+            android:layout_gravity="center_horizontal"
             android:textColor="#fff"/>
 
         <LinearLayout
@@ -113,7 +141,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#fff"
-                android:layout_centerInParent="true"
                 android:padding="10dp"
                 android:text="OR"/>
 
@@ -126,6 +153,26 @@
 
         </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#0a70dc">
+
+            <ImageView
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:padding="10dp"
+                android:src="@drawable/login19"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Connect with Facebook"
+                android:textColor="#fff"
+                android:layout_centerInParent="true"
+                android:textAlignment="center"/>
+
+        </RelativeLayout>
 
     </LinearLayout>
 
