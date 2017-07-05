@@ -1,5 +1,6 @@
 package com.smartbeings.assignment;
 
+
 public class listings {
 
     String _id,activity,attendees,hours,price,lRules,desc,lTitle,address,neighborhood,city,state,country,email,availability,images;

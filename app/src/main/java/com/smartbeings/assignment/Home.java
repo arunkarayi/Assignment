@@ -33,7 +33,7 @@ import java.net.HttpURLConnection;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 
-public class Home extends AppCompatActivity implements MessageFragment.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener,BookingsFragment.OnFragmentInteractionListener{
+public class Home extends AppCompatActivity implements MessageFragment.OnFragmentInteractionListener,SearchFragment.OnFragmentInteractionListener,BookingsFragment.OnFragmentInteractionListener, profile.OnFragmentInteractionListener{
 
     private static final int CODE_ERROR = 1;
     private static final int CODE_OK = 0;
@@ -47,19 +47,15 @@ public class Home extends AppCompatActivity implements MessageFragment.OnFragmen
             switch (item.getItemId()) {
                 case R.id.search:
                     switchToFragment1();
-//                    mTextMessage.setText(R.string.title_home);
                     return true;
                 case R.id.messages:
-//                    mTextMessage.setText(R.string.title_dashboard);
                     switchToFragment2();
                     return true;
                 case R.id.bookings:
-//                    mTextMessage.setText(R.string.title_notifications);
                     switchToFragment3();
                     return true;
                 case R.id.you:
-//                    mTextMessage.setText(R.string.title_notifications);
-//                    switchToFragmentAccounts();
+                    switchToFragment4();
                     return true;
             }
             return false;
@@ -122,24 +118,14 @@ public class Home extends AppCompatActivity implements MessageFragment.OnFragmen
                             listings.longitude = item.getString("longitude");
                         }catch (Exception e)
                         {
-
+                            e.printStackTrace();
                         }
                         datalist.getListingses().add(listings);
                     }
                 }
-                catch (IOException e) {
+                catch (IOException | IllegalStateException | JsonSyntaxException e) {
                     // IO exception
                     Log.e("", e.getMessage(), e);
-                    error = true;
-                }
-                catch (IllegalStateException ise) {
-                    // Illegal state: maybe the service returned an empty string.
-                    Log.e("", ise.getMessage(), ise);
-                    error = true;
-                }
-                catch (JsonSyntaxException jse) {
-                    // JSON syntax is wrong. This could be quite bad.
-                    Log.e("", jse.getMessage(), jse);
                     error = true;
                 } catch (JSONException e) {
                     e.printStackTrace();
@@ -229,12 +215,7 @@ public class Home extends AppCompatActivity implements MessageFragment.OnFragmen
 
                 String text = new String(bufH.toByteArray()).trim();
                 return text;
-            }
-            catch (SocketTimeoutException ste) {
-                ste.printStackTrace();
-                throw ste;
-            }
-            catch (IOException ioe) {
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
                 throw ioe;
             }
@@ -244,7 +225,9 @@ public class Home extends AppCompatActivity implements MessageFragment.OnFragmen
                         is.close();
                     }
                 }
-                catch (IOException e) {	}
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else {
@@ -260,6 +243,11 @@ public class Home extends AppCompatActivity implements MessageFragment.OnFragmen
     public void switchToFragment3() {
         FragmentManager manager = getSupportFragmentManager();
         manager.beginTransaction().replace(R.id.content, new BookingsFragment()).commit();
+    }
+
+    public void switchToFragment4() {
+        FragmentManager manager = getSupportFragmentManager();
+        manager.beginTransaction().replace(R.id.content, new profile()).commit();
     }
 
     public void switchToFragment1() {

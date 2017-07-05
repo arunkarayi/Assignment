@@ -55,18 +55,37 @@ public class Login extends AppCompatActivity {
         signin_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                username = usernameetxt.getText().toString();
-                password = passwordetxt.getText().toString();
-                if (checkConnectivity())
+
+                try {
+                    username = usernameetxt.getText().toString();
+                    password = passwordetxt.getText().toString();
+
+                    if (username.equals(""))
+                    {
+                        FlashMessage("Enter username");
+                    }
+                    else if (password.equals(""))
+                    {
+                        FlashMessage("Enter password");
+                    }
+                    else {
+                        if (checkConnectivity())
+                        {
+                            pb.setVisibility(View.VISIBLE);
+                            signin_btn.setEnabled(false);
+                            System.out.println("pressed");
+                            callService();
+                        }
+                        else {
+                            FlashMessage("No internet connection");
+                        }
+                    }
+
+                }catch (Exception ex)
                 {
-                    pb.setVisibility(View.VISIBLE);
-                    signin_btn.setEnabled(false);
-                    System.out.println("pressed");
-                    callService();
+                    FlashMessage("Error "+ex.toString());
                 }
-                else {
-                    FlashMessage("No internet connection");
-                }
+
             }
         });
     }
@@ -103,19 +122,9 @@ public class Login extends AppCompatActivity {
                     System.out.println("response : "+response);
                     login_result = new Gson().fromJson(response, Login_auth_data.class);
                 }
-                catch (IOException e) {
+                catch (IOException | IllegalStateException | JsonSyntaxException e) {
                     // IO exception
                     Log.e("", e.getMessage(), e);
-                    error = true;
-                }
-                catch (IllegalStateException ise) {
-                    // Illegal state: maybe the service returned an empty string.
-                    Log.e("", ise.getMessage(), ise);
-                    error = true;
-                }
-                catch (JsonSyntaxException jse) {
-                    // JSON syntax is wrong. This could be quite bad.
-                    Log.e("", jse.getMessage(), jse);
                     error = true;
                 }
 
@@ -146,7 +155,6 @@ public class Login extends AppCompatActivity {
                 String name = login_result.getSuccess();
                 String company = login_result.getMessage();
 //                buildList();
-                FlashMessage("name : "+name);
                 if (login_result.getSuccess().equals("true")) {
                     Intent intent = new Intent(Login.this,Home.class);
                     startActivity(intent);
@@ -217,25 +225,19 @@ public class Login extends AppCompatActivity {
 
                 String text = new String(bufH.toByteArray()).trim();
                 return text;
-            }
-            catch (SocketTimeoutException ste) {
-                ste.printStackTrace();
-                throw ste;
-            }
-            catch (IOException ioe) {
+            } catch (IOException ioe) {
                 ioe.printStackTrace();
                 throw ioe;
             }
             finally {
                 try {
-                    if (bis != null) {
-                        bis.close();
-                    }
                     if (is != null) {
                         is.close();
                     }
                 }
-                catch (IOException e) {	}
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else {

@@ -5,25 +5,25 @@
         android:id="@+id/search"
         android:enabled="true"
         android:icon="@drawable/output38"
-        android:title="SEARCH"
+        android:title="@string/search"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/messages"
         android:enabled="true"
         android:icon="@drawable/output39"
-        android:title="messages"
+        android:title="@string/messages"
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/bookings"
         android:enabled="true"
         android:icon="@drawable/output40"
-        android:title="bookings"
+        android:title="@string/bookings"
         app:showAsAction="ifRoom" />
 
     <item
         android:id="@+id/you"
         android:enabled="true"
         android:icon="@drawable/output41"
-        android:title="user"
+        android:title="@string/user"
         app:showAsAction="ifRoom" />
 </menu>
